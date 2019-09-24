@@ -58,16 +58,21 @@ int calculateNewBufferSize(){
     return BUFFSIZ - 1;
 }
 
-char* estabilishDataToSend(char *data_to_send, char *SOURCE_URI){
-    data_to_send = malloc(sizeof(char) * (strlen(SOURCE_URI) + strlen("GET  HTTP/1.1\r\n\r\n")));
+char* estabilishDataToSend(char *data_to_send, char *SOURCE_URI){ 
+    const int HOW_MANY_TIMES_CALL_HOST = 2;
+    data_to_send = malloc(sizeof(char) * ((strlen(SOURCE_URI) * HOW_MANY_TIMES_CALL_HOST) + strlen("GET  HTTP/1.1\r\nHost: \r\nr\n")));
+
     strcpy(data_to_send, "GET ");
     strcat(data_to_send, SOURCE_URI);
-    strcat(data_to_send, " HTTP/1.1\r\n\r\n");
+    strcat(data_to_send, " HTTP/1.1\r\n");
+    strcat(data_to_send, "Host: ");
+    strcat(data_to_send, SOURCE_URI);
+    strcat(data_to_send, "\r\n\r\n");
     return data_to_send;
 }
 
 int main(int argc, char *argv[])
-{
+{ 
     int socket_identificator, on = 1, destination_file_identificator, number_of_received_arguments=argc, answer_status_code;
     const int NUMBER_OF_EXPECTED_ARGUMENTS=5, THROWS_ERROR_CODE=1, UNCONNECTED_SOCKET = -1, PROGRAM_SUCCESSFULL_EXECUTED_CODE=0;
 	char buffer[BUFFSIZ],*data_to_send;
