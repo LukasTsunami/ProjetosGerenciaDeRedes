@@ -59,10 +59,10 @@ int calculateNewBufferSize(){
 }
 
 char* estabilishDataToSend(char *data_to_send, char *SOURCE_URI){
-    data_to_send = malloc(sizeof(char) * (strlen(SOURCE_URI) + strlen("GET  HTTP/1.0\r\n\r\n")));
+    data_to_send = malloc(sizeof(char) * (strlen(SOURCE_URI) + strlen("GET  HTTP/1.1\r\n\r\n")));
     strcpy(data_to_send, "GET ");
     strcat(data_to_send, SOURCE_URI);
-    strcat(data_to_send, " HTTP/1.0\r\n\r\n");
+    strcat(data_to_send, " HTTP/1.1\r\n\r\n");
     return data_to_send;
 }
 
