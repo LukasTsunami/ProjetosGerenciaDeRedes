@@ -6,7 +6,7 @@ void configureSocket(struct addrinfo *address_info_configuration_model);
 char* copyDynamicString(char* output_str, char* input_str);
 void eraseAllPreviousSocketData(struct addrinfo *socket_addr);
 char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
-char* getAddressFormatedAsAnIPAddress(struct sockaddr_in *information_core);
+char* formatAsIP(struct sockaddr_in *information_core);
 struct VariablesDTO mapArgumentsToVariables(char *arguments[]);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
 void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
@@ -63,7 +63,7 @@ char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname
     return data_to_send;
 }
 
-char* getAddressFormatedAsAnIPAddress(struct sockaddr_in *information_core){
+char* formatAsIP(struct sockaddr_in *information_core){
   return inet_ntoa((struct in_addr) information_core->sin_addr);
 }
 
