@@ -1,0 +1,2 @@
+int* global_variable_to_get_socket_identificator_from_blocking_function_fork_and_loop_list_tho_try_to_connect;
+
