@@ -2,15 +2,6 @@
 #include "./constants.h"
 #include "./functions.h"
 
-int test_if_hostname_exists(char* hostname, char* port, struct addrinfo * address_info_configuration_model, struct addrinfo ** target_gotten_address_informations){    int answer_status_code = -1; 
-    
-    if( (answer_status_code = getaddrinfo(hostname, port, address_info_configuration_model, target_gotten_address_informations)) != 0) {
-        fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(answer_status_code));
-    }
-
-    return answer_status_code;
-}
-
 int main(int argc, char *argv[])
 { 
     int socket_identificator, on = 1, destination_file_identificator, number_of_received_arguments=argc, answer_status_code;
