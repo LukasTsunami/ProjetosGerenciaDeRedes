@@ -29,8 +29,12 @@
 - docker-compose run --rm httprequests /bin/bash
 - After that, run one of those **scripts** before
 
-### Every run, you can run something like:
-- docker stop projetosgerenciaderedes_httprequests_1 && docker rm projetosgerenciaderedes_httprequests_1 && docker volume rm projetosgerenciaderedes_ger-redes && docker-compose up --build && docker-compose run --rm httprequests /bin/bash
+## How to test server?:
+- enter into server folder
+- run node index.js
+- download ngrok to expose localhost
+  - ./ngrok http 8081
+- After this, change ./run.sh  with the ngrok URL
 
 ## Where will be stored my http responses?
 
