@@ -66,7 +66,6 @@ char* createRequestMessage(char* http_method, char *data_to_send, char* hostname
         strcpy(data_to_send, http_method);
         strcat(data_to_send, " ");
         strcat(data_to_send, html_file_path_and_filename_on_host);
-        strcat(data_to_send, "?teste=1");
         strcat(data_to_send, " HTTP/1.1\r\n");
         strcat(data_to_send, "Host: ");
         strcat(data_to_send, hostname);
