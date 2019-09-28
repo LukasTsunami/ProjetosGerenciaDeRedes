@@ -1,6 +1,6 @@
 #include "./structures.h"
 
-char* allocate_memory_for_request_message(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
+char* allocateMemoryForRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
 int calculateNewBufferSize();
 void configureSocket(struct addrinfo *address_info_configuration_model);
 char* copyDynamicString(char* output_str, char* input_str);
@@ -9,10 +9,10 @@ char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname
 struct VariablesDTO mapArgumentsToVariables(char *arguments[]);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
 void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
-void validates_if_the_quantity_of_arguments_passed_is_valid(int how_many_parameters_were_passed);
-int test_if_hostname_exists(char* hostname, char* port, struct addrinfo * address_info_configuration_model, struct addrinfo ** target_gotten_address_informations);
+void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were_passed);
+int getAListOfAllAddressess(char* hostname, char* port, struct addrinfo * address_info_configuration_model, struct addrinfo ** target_gotten_address_informations);
 
-char* allocate_memory_for_request_message(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){
+char* allocateMemoryForRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){
     return malloc(sizeof(char) * ((strlen(html_file_path_and_filename_on_host)) + strlen(hostname) + strlen(http_method) + strlen("  HTTP/1.1\r\nHost: \r\nr\n")));
 }
 
@@ -48,7 +48,7 @@ void eraseAllPreviousSocketData(struct addrinfo *socket_addr){
 }
 
 char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){ 
-    data_to_send = allocate_memory_for_request_message(http_method, data_to_send, hostname, html_file_path_and_filename_on_host);
+    data_to_send = allocateMemoryForRequestMessage(http_method, data_to_send, hostname, html_file_path_and_filename_on_host);
     
     strcpy(data_to_send, http_method);
     strcat(data_to_send, " ");
@@ -112,7 +112,7 @@ void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr){
     socket_addr->ai_socktype = SOCK_STREAM;
 } 
 
-void validates_if_the_quantity_of_arguments_passed_is_valid(int how_many_parameters_were_passed){
+void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were_passed){
   // 6 params => { 0 = argc, 1 = http_method, 2 = hostname, 3 = port, 4 = source_path, 5 = destination_path }
   const int expected_parameters = 6;
   if(how_many_parameters_were_passed!=expected_parameters){
@@ -131,7 +131,7 @@ void validates_if_the_quantity_of_arguments_passed_is_valid(int how_many_paramet
     }
 }
 
-int test_if_hostname_exists(char* hostname, char* port, struct addrinfo * address_info_configuration_model, struct addrinfo ** target_gotten_address_informations){    
+int getAListOfAllAddressess(char* hostname, char* port, struct addrinfo * address_info_configuration_model, struct addrinfo ** target_gotten_address_informations){    
     int answer_status_code = -1; 
     
     if( (answer_status_code = getaddrinfo(hostname, port, address_info_configuration_model, target_gotten_address_informations)) != 0) {

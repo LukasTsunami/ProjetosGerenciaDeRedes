@@ -12,13 +12,13 @@ int main(int argc, char *argv[])
     struct sockaddr_in *information_core;
     struct addrinfo *target_gotten_address_informations;
     
-    validates_if_the_quantity_of_arguments_passed_is_valid(number_of_received_arguments);
+    validatesIfTheQuantityOfArgumentsPassedIsValid(number_of_received_arguments);
     
     struct VariablesDTO variables = mapArgumentsToVariables(argv);
 
     configureSocket(&address_info_configuration_model);
 
-    test_if_hostname_exists(variables.hostname, variables.port, &address_info_configuration_model, &target_gotten_address_informations);
+    getAListOfAllAddressess(variables.hostname, variables.port, &address_info_configuration_model, &target_gotten_address_informations);
     
     for(pointer_to_walk_along_address_infos = target_gotten_address_informations; pointer_to_walk_along_address_infos != NULL; pointer_to_walk_along_address_infos = pointer_to_walk_along_address_infos->ai_next)
     {
