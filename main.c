@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     configureSocket(&address_info_configuration_model);
 
-    getAListOfAllAddressessInfos(variables.hostname, variables.port, &address_info_configuration_model, &list_of_addresses_infos);
+    getAListOfAllAddressessInfos(variables, &address_info_configuration_model, &list_of_addresses_infos);
     
     forkAndLoopListThoTryToConnect(list_of_addresses_infos, &socket_identificator);
     

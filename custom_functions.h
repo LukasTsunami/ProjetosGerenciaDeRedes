@@ -16,7 +16,7 @@ struct VariablesDTO mapArgumentsToVariables(char *arguments[]);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
 void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
 void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were_passed);
-int getAListOfAllAddressessInfos(char* hostname, char* port, struct addrinfo * address_info_configuration_model, struct addrinfo ** list_of_addresses_infos);
+int getAListOfAllAddressessInfos(struct VariablesDTO variables, struct addrinfo * address_info_configuration_model, struct addrinfo ** list_of_addresses_infos);
 
 char* allocateMemoryForRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){
     return malloc(sizeof(char) * ((strlen(html_file_path_and_filename_on_host)) + strlen(hostname) + strlen(http_method) + strlen("  HTTP/1.1\r\nHost: \r\nr\n")));
@@ -144,6 +144,16 @@ struct VariablesDTO mapArgumentsToVariables(char *arguments[]){
   return dto;
 }
 
+int getAListOfAllAddressessInfos(struct VariablesDTO variables, struct addrinfo * address_info_configuration_model, struct addrinfo ** list_of_addresses_infos){    
+    int answer_status_code = -1; 
+    
+    if( (answer_status_code = getaddrinfo(variables.hostname, variables.port, address_info_configuration_model, list_of_addresses_infos)) != 0) {
+        fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(answer_status_code));
+    }
+
+    return answer_status_code;
+}
+
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]){
     if(strcmp(protocol,"IPV4")==0){
         socket_addr->ai_family = AF_INET;
@@ -184,14 +194,4 @@ void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were
         printf("\n\n------------------------------------------------------\n");
         exit(ERROR);
     }
-}
-
-int getAListOfAllAddressessInfos(char* hostname, char* port, struct addrinfo * address_info_configuration_model, struct addrinfo ** list_of_addresses_infos){    
-    int answer_status_code = -1; 
-    
-    if( (answer_status_code = getaddrinfo(hostname, port, address_info_configuration_model, list_of_addresses_infos)) != 0) {
-        fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(answer_status_code));
-    }
-
-    return answer_status_code;
 }
