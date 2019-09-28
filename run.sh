@@ -1,7 +1,7 @@
 #/bin/sh
 
 #Compile program and create executable "exe"
-gcc -o exe get.c
+gcc -o exe main.c
 
 #recreate destination file
 echo "" > response_from_executed_request.txt
