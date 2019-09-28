@@ -66,13 +66,17 @@ char* createRequestMessage(char* http_method, char *data_to_send, char* hostname
         strcpy(data_to_send, http_method);
         strcat(data_to_send, " ");
         strcat(data_to_send, html_file_path_and_filename_on_host);
+        strcat(data_to_send, "?teste=1");
         strcat(data_to_send, " HTTP/1.1\r\n");
         strcat(data_to_send, "Host: ");
         strcat(data_to_send, hostname);
-        strcat(data_to_send, "\r\nContent-Type: application/octet-stream");
-        strcat(data_to_send, "\r\nContent-Encoding: binary");
-        strcat(data_to_send, "\r\nContent-Length: 16");
-        strcat(data_to_send, "\r\n\r\n"); 
+        strcat(data_to_send, "\r\n");
+        strcat(data_to_send, "Content-Type: application/octet-stream\r\n");
+        //strcat(data_to_send, "Content-type: application/x-www-form-urlencoded\r\n");
+        //strcat(data_to_send, "\r\nContent-Encoding: binary");
+        strcat(data_to_send, "Content-Length: 32\r\n");
+        strcat(data_to_send, "\r\n\n"); 
+        strcat(data_to_send, "email=lucas@tsunami&nome=lucas\r\n");
     
     }else if ( (strcmp(http_method, "GET")==0) || (strcmp(http_method, "HEAD")==0) ){
         strcpy(data_to_send, http_method);

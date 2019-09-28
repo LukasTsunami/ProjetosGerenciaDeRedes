@@ -1,5 +1,15 @@
 var express = require("express");
+var bodyParser = require("body-parser");
+var formatBufferAsJson = require("./helpers/format_buffer_as_json");
+
 var app = express();
+
+var options = {
+  inflate: true,
+  limit: "100kb",
+  type: "application/octet-stream"
+};
+app.use(bodyParser.raw(options));
 
 //Define request response in root URL (/)
 app.get("/", function(req, res) {
@@ -7,11 +17,14 @@ app.get("/", function(req, res) {
 });
 
 app.put("/", function(req, res) {
-  res.send("Esse é um retorno de uma chamada PUT");
+  let jsonmsg = formatBufferAsJson(req.body);
+  res.send(jsonmsg);
 });
 
 app.post("/", function(req, res) {
-  res.send("Esse é um retorno de uma chamada POST");
+  let jsonmsg = formatBufferAsJson(req.body);
+  console.log(jsonmsg);
+  res.send(jsonmsg);
 });
 
 app.head("/", function(req, res) {

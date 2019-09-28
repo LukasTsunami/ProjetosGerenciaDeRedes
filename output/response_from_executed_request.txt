@@ -1,2 +1,9 @@
 
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 40
+ETag: W/"28-+sQ4aJp3UUNnbArbVd7Jn0MTCy4"
+Date: Sat, 28 Sep 2019 19:46:59 GMT
 
+{"email":"paulo@tsunami","nome":"paulo"}
