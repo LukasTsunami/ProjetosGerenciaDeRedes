@@ -1,16 +1,19 @@
-char* allocate_memory_for_request_message(char* http_method, char *data_to_send, char* hostname, char *SOURCE_URI);
+#include "./structures.h"
+
+char* allocate_memory_for_request_message(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
 int calculateNewBufferSize();
 void configureSocket(struct addrinfo *address_info_configuration_model);
 char* copyDynamicString(char* output_str, char* input_str);
 void eraseAllPreviousSocketData(struct addrinfo *socket_addr);
-char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname, char *SOURCE_URI);
+char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
+struct VariablesDTO mapArgumentsToVariables(char *arguments[]);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
 void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
 void validates_if_the_quantity_of_arguments_passed_is_valid(int how_many_parameters_were_passed);
 int test_if_hostname_exists(char* hostname, char* port, struct addrinfo * address_info_configuration_model, struct addrinfo ** target_gotten_address_informations);
 
-char* allocate_memory_for_request_message(char* http_method, char *data_to_send, char* hostname, char *SOURCE_URI){
-    return malloc(sizeof(char) * ((strlen(SOURCE_URI)) + strlen(hostname) + strlen(http_method) + strlen("  HTTP/1.1\r\nHost: \r\nr\n")));
+char* allocate_memory_for_request_message(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){
+    return malloc(sizeof(char) * ((strlen(html_file_path_and_filename_on_host)) + strlen(hostname) + strlen(http_method) + strlen("  HTTP/1.1\r\nHost: \r\nr\n")));
 }
 
 int calculateNewBufferSize(){
@@ -44,12 +47,12 @@ void eraseAllPreviousSocketData(struct addrinfo *socket_addr){
     memset(socket_addr, which_byte_to_set_data, sizeof(struct addrinfo));
 }
 
-char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname, char *SOURCE_URI){ 
-    data_to_send = allocate_memory_for_request_message(http_method, data_to_send, hostname, SOURCE_URI);
+char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){ 
+    data_to_send = allocate_memory_for_request_message(http_method, data_to_send, hostname, html_file_path_and_filename_on_host);
     
     strcpy(data_to_send, http_method);
     strcat(data_to_send, " ");
-    strcat(data_to_send, SOURCE_URI);
+    strcat(data_to_send, html_file_path_and_filename_on_host);
     strcat(data_to_send, " HTTP/1.1\r\n");
     strcat(data_to_send, "Host: ");
     strcat(data_to_send, hostname);
@@ -57,6 +60,33 @@ char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname
     printf("%s",data_to_send);
     
     return data_to_send;
+}
+
+struct VariablesDTO mapArgumentsToVariables(char *arguments[]){ 
+  char *current_executable = (char*) malloc(sizeof(char) * sizeof(arguments[0]));
+  char *http_method = (char*) malloc(sizeof(char) * sizeof(arguments[1]));
+  char *hostname = (char*) malloc(sizeof(char) * sizeof(arguments[2]));
+  char *port = (char*) malloc(sizeof(char) * sizeof(arguments[3]));
+  char *html_file_path_and_filename = (char*) malloc(sizeof(char) * sizeof(arguments[4]));
+  char *destination_file_to_save_response_from_request = (char*) malloc(sizeof(char) * sizeof(arguments[5]));
+  
+  current_executable = copyDynamicString(current_executable, arguments[0]);
+  http_method = copyDynamicString(http_method, arguments[1]);
+  hostname = copyDynamicString(hostname, arguments[2]);
+  port = copyDynamicString(port, arguments[3]);
+  html_file_path_and_filename = copyDynamicString(html_file_path_and_filename, arguments[4]);
+  destination_file_to_save_response_from_request = copyDynamicString(destination_file_to_save_response_from_request, arguments[5]);
+
+  struct VariablesDTO dto = { 
+    current_executable,
+    http_method,
+    hostname,
+    port,
+    html_file_path_and_filename,
+    destination_file_to_save_response_from_request
+  };
+
+  return dto;
 }
 
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]){
