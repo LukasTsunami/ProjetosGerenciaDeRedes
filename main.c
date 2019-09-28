@@ -1,8 +1,9 @@
 #include "./libs.h"
 #include "./constants.h"
+#include "./global_variables.h"
 #include "./functions.h"
 
-void loopListTryingToConnect(struct addrinfo *list_of_addresses_infos, int *socket_identificator){
+void forkAndLoopListThoTryToConnect(struct addrinfo *list_of_addresses_infos, int *socket_identificator){
     struct addrinfo *pointer_to_walk_along_address_infos;
     struct sockaddr_in *information_core;
     int OPTLEN = 1, UNCONNECTED_SOCKET = -1;
@@ -13,17 +14,17 @@ void loopListTryingToConnect(struct addrinfo *list_of_addresses_infos, int *sock
         printf("------------------------\n");
         printf("Address: %s\n", formatAsIP(information_core));
         
-        int aux = socket(pointer_to_walk_along_address_infos->ai_family, pointer_to_walk_along_address_infos->ai_socktype, IPPROTO_TCP);
-        
-        socket_identificator = &aux;
+        int socket_identificator = socket(pointer_to_walk_along_address_infos->ai_family, pointer_to_walk_along_address_infos->ai_socktype, IPPROTO_TCP);
 
-        setsockopt(*socket_identificator, IPPROTO_TCP, TCP_NODELAY, (const char *) &OPTLEN, sizeof(int));
+        setsockopt(socket_identificator, IPPROTO_TCP, TCP_NODELAY, (const char *) &OPTLEN, sizeof(int));
         
-        if(*socket_identificator == UNCONNECTED_SOCKET)
+        global_variable_to_get_socket_identificator_from_blocking_function_fork_and_loop_list_tho_try_to_connect = &socket_identificator;
+
+        if(socket_identificator == UNCONNECTED_SOCKET)
             continue;
-        if(connect(*socket_identificator, pointer_to_walk_along_address_infos->ai_addr, pointer_to_walk_along_address_infos->ai_addrlen) != -1)
+        if(connect(socket_identificator, pointer_to_walk_along_address_infos->ai_addr, pointer_to_walk_along_address_infos->ai_addrlen) != -1)
             break;
-        close(*socket_identificator);
+        close(socket_identificator);
 
     }
 
@@ -40,7 +41,7 @@ int main(int argc, char *argv[])
 { 
     int socket_identificator, destination_file_identificator, number_of_received_arguments=argc, answer_status_code;
     const int THROWS_ERROR_CODE=1, PROGRAM_SUCCESSFULL_EXECUTED_CODE=0;
-    char buffer[BUFFSIZ],*data_to_send;
+    char buffer[BUFFSIZ], *data_to_send;
     struct addrinfo address_info_configuration_model;
     struct addrinfo *list_of_addresses_infos;
     
@@ -52,9 +53,12 @@ int main(int argc, char *argv[])
 
     getAListOfAllAddressessInfos(variables.hostname, variables.port, &address_info_configuration_model, &list_of_addresses_infos);
     
-    loopListTryingToConnect(list_of_addresses_infos, &socket_identificator);
+    forkAndLoopListThoTryToConnect(list_of_addresses_infos, &socket_identificator);
+    
+    socket_identificator = *global_variable_to_get_socket_identificator_from_blocking_function_fork_and_loop_list_tho_try_to_connect;
 
     data_to_send = estabilishDataToSend(variables.http_method, data_to_send, variables.hostname, variables.html_file_path_and_filename);
+
     write(socket_identificator, data_to_send, strlen(data_to_send));
     bzero(buffer, BUFFSIZ);
     destination_file_identificator = open(variables.destination_file_to_save_response_from_request, O_WRONLY | O_APPEND | O_CREAT, FILE_PERMISSIONS);
