@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     struct addrinfo address_info_configuration_model;
     struct addrinfo *pointer_to_walk_along_address_infos;
     struct sockaddr_in *information_core;
-    struct addrinfo *target_gotten_address_informations;
+    struct addrinfo *list_of_addresses_infos;
     
     validatesIfTheQuantityOfArgumentsPassedIsValid(number_of_received_arguments);
     
@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
 
     configureSocket(&address_info_configuration_model);
 
-    getAListOfAllAddressess(variables.hostname, variables.port, &address_info_configuration_model, &target_gotten_address_informations);
+    getAListOfAllAddressessInfos(variables.hostname, variables.port, &address_info_configuration_model, &list_of_addresses_infos);
     
-    for(pointer_to_walk_along_address_infos = target_gotten_address_informations; pointer_to_walk_along_address_infos != NULL; pointer_to_walk_along_address_infos = pointer_to_walk_along_address_infos->ai_next)
+    for(pointer_to_walk_along_address_infos = list_of_addresses_infos; pointer_to_walk_along_address_infos != NULL; pointer_to_walk_along_address_infos = pointer_to_walk_along_address_infos->ai_next)
     {
         information_core = (struct sockaddr_in *) pointer_to_walk_along_address_infos->ai_addr;
         printf("\t------------------------\n");
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    freeaddrinfo(target_gotten_address_informations);
+    freeaddrinfo(list_of_addresses_infos);
     data_to_send = estabilishDataToSend(variables.http_method, data_to_send, variables.hostname, variables.html_file_path_and_filename);
     write(socket_identificator, data_to_send, strlen(data_to_send));
     bzero(buffer, BUFFSIZ);
