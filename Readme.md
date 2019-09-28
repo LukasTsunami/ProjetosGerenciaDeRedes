@@ -27,10 +27,10 @@
 ## With Docker:
 - docker-compose up --build
 - docker-compose run --rm httprequests /bin/bash
+- After that, run one of those **scripts** before
 
 ### Every run, you can run something like:
 - docker stop projetosgerenciaderedes_httprequests_1 && docker rm projetosgerenciaderedes_httprequests_1 && docker volume rm projetosgerenciaderedes_ger-redes && docker-compose up --build && docker-compose run --rm httprequests /bin/bash
-- After that, run one of those scripts before
 
 ## Where will be stored my http responses?
 
