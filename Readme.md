@@ -1,3 +1,10 @@
+# This project make Http 1.1 requests (without TLS) using raw C language
+## HTTP METHODS IMPLEMENTED:
+- GET
+- HEAD
+- POST
+- PUT
+
 # There are some ways of running this project:
 
 ## Choose one of those scripts:
@@ -14,7 +21,7 @@
 
 #### Example2:
 
-- ./exe GET 10.132.20.22 80 /aulas/gr/readme.txt output/response_from_executed_request.txt
+- ./exe POST 10.132.20.22 80 /aulas/gr/readme.txt output/response_from_executed_request.txt
 
 ---
 
