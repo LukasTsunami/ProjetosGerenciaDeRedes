@@ -5,6 +5,7 @@
 char* allocateMemoryForRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
 int calculateNewBufferSize();
 void cleanBufferOfDestinationFile(char (*buffer)[BUFFSIZ]);
+void closeConnection(int socket_identificator);
 void configureSocket(struct addrinfo *address_info_configuration_model);
 char* copyDynamicString(char* output_str, char* input_str);
 char* createRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
@@ -29,6 +30,11 @@ int calculateNewBufferSize(){
 
 void cleanBufferOfDestinationFile(char (*buffer)[BUFFSIZ]){
     bzero(buffer, BUFFSIZ);
+}
+
+void closeConnection(int socket_identificator){
+    shutdown(socket_identificator, SHUT_RDWR);
+    close(socket_identificator);
 }
 
 void configureSocket(struct addrinfo *address_info_configuration_model){

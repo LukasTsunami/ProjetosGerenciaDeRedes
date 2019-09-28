@@ -27,8 +27,7 @@ int main(int argc, char *argv[])
 
     sendData(variables, socket_identificator, &buffer, destination_file_identificator);
 
-    shutdown(socket_identificator, SHUT_RDWR);
-    close(socket_identificator);
+    closeConnection(socket_identificator);
     
 	return(PROGRAM_SUCCESSFULL_EXECUTED_CODE);
 }
