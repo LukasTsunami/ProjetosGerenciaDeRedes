@@ -25,13 +25,7 @@ int main(int argc, char *argv[])
 
     cleanBufferOfDestinationFile(&buffer);
 
-    destination_file_identificator = open(variables.destination_file_to_save_response_from_request, O_WRONLY | O_APPEND | O_CREAT, FILE_PERMISSIONS);
-
-    while( read(socket_identificator, buffer, calculateNewBufferSize() != 0))
-    {
-        write(destination_file_identificator, buffer, strlen(buffer));
-        bzero(buffer, BUFFSIZ);
-    }
+    sendData(variables, socket_identificator, &buffer, destination_file_identificator);
 
     shutdown(socket_identificator, SHUT_RDWR);
     close(socket_identificator);

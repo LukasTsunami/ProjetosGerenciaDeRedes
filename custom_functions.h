@@ -1,7 +1,7 @@
 #include "./constants.h"
 #include "./global_variables.h"
 #include "./structures.h"
-
+ 
 char* allocateMemoryForRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
 int calculateNewBufferSize();
 void cleanBufferOfDestinationFile(char (*buffer)[BUFFSIZ]);
@@ -13,6 +13,7 @@ void estabilishDataToSend(int socket_identificator, struct VariablesDTO variable
 void forkAndLoopListThoTryToConnect(struct addrinfo *list_of_addresses_infos, int *socket_identificator);
 char* formatAsIP(struct sockaddr_in *information_core);
 struct VariablesDTO mapArgumentsToVariables(char *arguments[]);
+void sendData(struct VariablesDTO variables, int socket_identificator, char (*buffer)[BUFFSIZ], int destination_file_identificator);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
 void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
 void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were_passed);
@@ -152,6 +153,16 @@ int getAListOfAllAddressessInfos(struct VariablesDTO variables, struct addrinfo 
     }
 
     return answer_status_code;
+}
+
+void sendData(struct VariablesDTO variables, int socket_identificator, char (*buffer)[BUFFSIZ], int destination_file_identificator){
+    destination_file_identificator = open(variables.destination_file_to_save_response_from_request, O_WRONLY | O_APPEND | O_CREAT, FILE_PERMISSIONS);
+
+    while( read(socket_identificator, buffer, calculateNewBufferSize() != 0))
+    {
+        write(destination_file_identificator, buffer, strlen(*buffer));
+        cleanBufferOfDestinationFile(buffer);
+    }
 }
 
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]){
