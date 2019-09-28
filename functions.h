@@ -4,8 +4,9 @@ char* allocateMemoryForRequestMessage(char* http_method, char *data_to_send, cha
 int calculateNewBufferSize();
 void configureSocket(struct addrinfo *address_info_configuration_model);
 char* copyDynamicString(char* output_str, char* input_str);
+char* createRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
 void eraseAllPreviousSocketData(struct addrinfo *socket_addr);
-char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
+void estabilishDataToSend(int socket_identificator, struct VariablesDTO variables);
 char* formatAsIP(struct sockaddr_in *information_core);
 struct VariablesDTO mapArgumentsToVariables(char *arguments[]);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
@@ -43,12 +44,7 @@ char* copyDynamicString(char* output_str, char* input_str){
     return output_str;
 }
 
-void eraseAllPreviousSocketData(struct addrinfo *socket_addr){
-    const int which_byte_to_set_data=0;
-    memset(socket_addr, which_byte_to_set_data, sizeof(struct addrinfo));
-}
-
-char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){ 
+char* createRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){ 
     data_to_send = allocateMemoryForRequestMessage(http_method, data_to_send, hostname, html_file_path_and_filename_on_host);
     
     strcpy(data_to_send, http_method);
@@ -61,6 +57,18 @@ char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname
     printf("%s",data_to_send);
 
     return data_to_send;
+}
+
+void eraseAllPreviousSocketData(struct addrinfo *socket_addr){
+    const int which_byte_to_set_data=0;
+    memset(socket_addr, which_byte_to_set_data, sizeof(struct addrinfo));
+}
+
+void estabilishDataToSend(int socket_identificator, struct VariablesDTO variables){
+    char *data_to_send = createRequestMessage(variables.http_method, data_to_send, variables.hostname, variables.html_file_path_and_filename);
+    
+    //write on socket communication buffer
+    write(socket_identificator, data_to_send, strlen(data_to_send));
 }
 
 char* formatAsIP(struct sockaddr_in *information_core){

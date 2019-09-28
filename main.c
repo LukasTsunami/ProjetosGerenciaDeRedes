@@ -57,9 +57,8 @@ int main(int argc, char *argv[])
     
     socket_identificator = *global_variable_to_get_socket_identificator_from_blocking_function_fork_and_loop_list_tho_try_to_connect;
 
-    data_to_send = estabilishDataToSend(variables.http_method, data_to_send, variables.hostname, variables.html_file_path_and_filename);
+    estabilishDataToSend(socket_identificator, variables);
 
-    write(socket_identificator, data_to_send, strlen(data_to_send));
     bzero(buffer, BUFFSIZ);
     destination_file_identificator = open(variables.destination_file_to_save_response_from_request, O_WRONLY | O_APPEND | O_CREAT, FILE_PERMISSIONS);
 
