@@ -213,3 +213,4 @@ void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were
         exit(ERROR);
     }
 }
+
