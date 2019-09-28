@@ -23,8 +23,8 @@ int main(int argc, char *argv[])
     for(pointer_to_walk_along_address_infos = list_of_addresses_infos; pointer_to_walk_along_address_infos != NULL; pointer_to_walk_along_address_infos = pointer_to_walk_along_address_infos->ai_next)
     {
         information_core = (struct sockaddr_in *) pointer_to_walk_along_address_infos->ai_addr;
-        printf("\t------------------------\n");
-        printf("\tAddress: %s\n", inet_ntoa((struct in_addr) information_core->sin_addr));
+        printf("------------------------\n");
+        printf("Address: %s\n", getAddressFormatedAsAnIPAddress(information_core));
         socket_identificator = socket(pointer_to_walk_along_address_infos->ai_family, pointer_to_walk_along_address_infos->ai_socktype, IPPROTO_TCP);
         setsockopt(socket_identificator, IPPROTO_TCP, TCP_NODELAY, (const char *) &on, sizeof(int));
         if(socket_identificator == UNCONNECTED_SOCKET)
