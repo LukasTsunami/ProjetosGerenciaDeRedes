@@ -14,7 +14,7 @@ void estabilishDataToSend(int socket_identificator, struct VariablesDTO variable
 void forkAndLoopListThoTryToConnect(struct addrinfo *list_of_addresses_infos, int *socket_identificator);
 char* formatAsIP(struct sockaddr_in *information_core);
 struct VariablesDTO mapArgumentsToVariables(char *arguments[]);
-void sendData(struct VariablesDTO variables, int socket_identificator, char (*buffer)[BUFFSIZ], int destination_file_identificator);
+void sendData(struct VariablesDTO variables, int socket_identificator, char (*buffer)[BUFFSIZ]);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
 void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
 void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were_passed);
@@ -161,10 +161,10 @@ int getAListOfAllAddressessInfos(struct VariablesDTO variables, struct addrinfo 
     return answer_status_code;
 }
 
-void sendData(struct VariablesDTO variables, int socket_identificator, char (*buffer)[BUFFSIZ], int destination_file_identificator){
+void sendData(struct VariablesDTO variables, int socket_identificator, char (*buffer)[BUFFSIZ]){
     cleanBufferOfDestinationFile(buffer);
 
-    destination_file_identificator = open(variables.destination_file_to_save_response_from_request, O_WRONLY | O_APPEND | O_CREAT, FILE_PERMISSIONS);
+    int destination_file_identificator = open(variables.destination_file_to_save_response_from_request, O_WRONLY | O_APPEND | O_CREAT, FILE_PERMISSIONS);
     while( read(socket_identificator, buffer, calculateNewBufferSize() != 0))
     {
         write(destination_file_identificator, buffer, strlen(*buffer));

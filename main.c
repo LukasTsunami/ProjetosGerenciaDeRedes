@@ -3,11 +3,9 @@
 
 int main(int argc, char *argv[])
 { 
-    int socket_identificator, destination_file_identificator, number_of_received_arguments=argc, answer_status_code;
-    const int THROWS_ERROR_CODE=1, PROGRAM_SUCCESSFULL_EXECUTED_CODE=0;
-    char buffer[BUFFSIZ], *data_to_send;
-    struct addrinfo address_info_configuration_model;
-    struct addrinfo *list_of_addresses_infos;
+    int socket_identificator, number_of_received_arguments=argc;
+    char buffer[BUFFSIZ];
+    struct addrinfo address_info_configuration_model, *list_of_addresses_infos;
     
     validatesIfTheQuantityOfArgumentsPassedIsValid(number_of_received_arguments);
     
@@ -23,7 +21,7 @@ int main(int argc, char *argv[])
 
     estabilishDataToSend(socket_identificator, variables);
 
-    sendData(variables, socket_identificator, &buffer, destination_file_identificator);
+    sendData(variables, socket_identificator, &buffer);
 
     closeConnection(socket_identificator);
     
