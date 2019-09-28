@@ -62,15 +62,29 @@ char* copyDynamicString(char* output_str, char* input_str){
 char* createRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){ 
     data_to_send = allocateMemoryForRequestMessage(http_method, data_to_send, hostname, html_file_path_and_filename_on_host);
     
-    strcpy(data_to_send, http_method);
-    strcat(data_to_send, " ");
-    strcat(data_to_send, html_file_path_and_filename_on_host);
-    strcat(data_to_send, " HTTP/1.1\r\n");
-    strcat(data_to_send, "Host: ");
-    strcat(data_to_send, hostname);
-    strcat(data_to_send, "\r\n\r\n");
+    if ( (strcmp(http_method, "POST")==0) || (strcmp(http_method, "PUT")==0) ) {
+        strcpy(data_to_send, http_method);
+        strcat(data_to_send, " ");
+        strcat(data_to_send, html_file_path_and_filename_on_host);
+        strcat(data_to_send, " HTTP/1.1\r\n");
+        strcat(data_to_send, "Host: ");
+        strcat(data_to_send, hostname);
+        strcat(data_to_send, "\r\nContent-Type: application/octet-stream");
+        strcat(data_to_send, "\r\nContent-Encoding: binary");
+        strcat(data_to_send, "\r\nContent-Length: 16");
+        strcat(data_to_send, "\r\n\r\n"); 
+    
+    }else if ( (strcmp(http_method, "GET")==0) || (strcmp(http_method, "HEAD")==0) ){
+        strcpy(data_to_send, http_method);
+        strcat(data_to_send, " ");
+        strcat(data_to_send, html_file_path_and_filename_on_host);
+        strcat(data_to_send, " HTTP/1.1\r\n");
+        strcat(data_to_send, "Host: ");
+        strcat(data_to_send, hostname);
+        strcat(data_to_send, "\r\n\r\n"); 
+    }
+    
     printf("%s",data_to_send);
-
     return data_to_send;
 }
 
