@@ -1,0 +1,4 @@
+#define BUFFSIZ 1024
+#define FILE_PERMISSIONS 0755
+#define ERROR -1
+#define SUCCESS 0

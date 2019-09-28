@@ -1,10 +1,10 @@
-version: '2'
+version: "2"
 
 volumes:
-  lab-redes:
+  ger-redes:
 
 services:
-  mtu: &base
-    image: debian
+  httprequests: &base
+    build: .
     volumes:
-      - lab-redes:/usr/local/mtu
+      - ger-redes:/usr/local/httprequests
