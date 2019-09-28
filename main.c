@@ -23,8 +23,6 @@ int main(int argc, char *argv[])
 
     estabilishDataToSend(socket_identificator, variables);
 
-    cleanBufferOfDestinationFile(&buffer);
-
     sendData(variables, socket_identificator, &buffer, destination_file_identificator);
 
     closeConnection(socket_identificator);

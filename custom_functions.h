@@ -162,8 +162,9 @@ int getAListOfAllAddressessInfos(struct VariablesDTO variables, struct addrinfo 
 }
 
 void sendData(struct VariablesDTO variables, int socket_identificator, char (*buffer)[BUFFSIZ], int destination_file_identificator){
-    destination_file_identificator = open(variables.destination_file_to_save_response_from_request, O_WRONLY | O_APPEND | O_CREAT, FILE_PERMISSIONS);
+    cleanBufferOfDestinationFile(buffer);
 
+    destination_file_identificator = open(variables.destination_file_to_save_response_from_request, O_WRONLY | O_APPEND | O_CREAT, FILE_PERMISSIONS);
     while( read(socket_identificator, buffer, calculateNewBufferSize() != 0))
     {
         write(destination_file_identificator, buffer, strlen(*buffer));
