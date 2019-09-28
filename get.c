@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     struct sockaddr_in *information_core;
     struct addrinfo *target_gotten_address_informations;
     
-    validates_if_the_quantity_of_paramaters_passed_is_valid(number_of_received_arguments);
+    validates_if_the_quantity_of_arguments_passed_is_valid(number_of_received_arguments);
 
     char *current_executable = copyDynamicString(current_executable, argv[0]);
     char *http_method = copyDynamicString(http_method, argv[1]);

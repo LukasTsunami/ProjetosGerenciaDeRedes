@@ -6,7 +6,7 @@ void eraseAllPreviousSocketData(struct addrinfo *socket_addr);
 char* estabilishDataToSend(char* http_method, char *data_to_send, char* hostname, char *SOURCE_URI);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
 void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
-void validates_if_the_quantity_of_paramaters_passed_is_valid(int how_many_parameters_were_passed);
+void validates_if_the_quantity_of_arguments_passed_is_valid(int how_many_parameters_were_passed);
 int test_if_hostname_exists(char* hostname, char* port, struct addrinfo * address_info_configuration_model, struct addrinfo ** target_gotten_address_informations);
 
 char* allocate_memory_for_request_message(char* http_method, char *data_to_send, char* hostname, char *SOURCE_URI){
@@ -82,7 +82,7 @@ void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr){
     socket_addr->ai_socktype = SOCK_STREAM;
 } 
 
-void validates_if_the_quantity_of_paramaters_passed_is_valid(int how_many_parameters_were_passed){
+void validates_if_the_quantity_of_arguments_passed_is_valid(int how_many_parameters_were_passed){
   // 6 params => { 0 = argc, 1 = http_method, 2 = hostname, 3 = port, 4 = source_path, 5 = destination_path }
   const int expected_parameters = 6;
   if(how_many_parameters_were_passed!=expected_parameters){
