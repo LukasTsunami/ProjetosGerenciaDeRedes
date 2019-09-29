@@ -1,0 +1,3 @@
+server/node_modules
+exe
+output/response_from_executed_request.txt
