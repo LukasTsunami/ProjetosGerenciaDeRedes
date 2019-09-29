@@ -1,15 +1,15 @@
 #include "./headers/libs.h"
 #include "./headers/custom_functions.h"
 
-int main(int argc, char *argv[])
+int main(int number_of_received_arguments, char *arguments[])
 {
-    int socket_identificator, number_of_received_arguments=argc;
+    int socket_identificator;
     char buffer[BUFFSIZ];
     struct addrinfo address_info_configuration_model, *list_of_addresses_infos;
 
     //Manage Received Aruments
     validatesIfTheQuantityOfArgumentsPassedIsValid(number_of_received_arguments);
-    struct VariablesDTO variables = mapArgumentsToVariables(argv);
+    struct VariablesDTO variables = mapArgumentsToVariables(arguments, number_of_received_arguments);
 
     //Before Connect
     configureSocket(&address_info_configuration_model);

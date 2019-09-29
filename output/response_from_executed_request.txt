@@ -1,54 +1,945 @@
 
-HTTP/1.1 402 Payment Required
-Content-Length: 1668
-Content-Type: text/html
+HTTP/1.1 200 OK
+Cache-Control: private
+Content-Type: text/html; Charset=utf-8
+Server: Microsoft-IIS/8.5
+Set-Cookie: ASPSESSIONIDCQDTDCST=CKFGMLDCHCPHIBJEAAJMBMLC; path=/
+Date: Sun, 29 Sep 2019 05:02:54 GMT
+Content-Length: 33456
 
 
-<!doctype html5>
-<html>
-    <head>
-        <style type="text/css">
-         
-        strong { font-weight: bold; }
-        hr { -moz-box-sizing: content-box; box-sizing: content-box; height: 0; }
-        html { font-family: sans-serif;   -ms-text-size-adjust: 100%;   -webkit-text-size-adjust: 100%;   } body { margin: 0; }
-        a { background-color: transparent; }
-        a:active, a:hover { outline: 0; }
-        </style>
 
-        <style type="text/css">
-            body { background-color: #f5f5f5; }
-            .container { width: 500px; margin: auto; color: #444; padding: 5px; }
-            a, strong { color: purple; text-decoration: none; }
-            a:hover { text-decoration: underline; }
-            h2 { text-align: center; color: #000; }
-            p { line-height: 20px; }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            
-            
-<h2>Tunnel Expired</h2>
-<hr />
-<p>
-    This tunnel expired 5 hours, 51 minutes ago.
-</p>
-<p>
-    <a href="https://dashboard.ngrok.com/user/signup">Sign up for a free account</a> so
-    that your tunnels don't time out or you can restart ngrok to get a new tunnel.
-</p>
-<p>
-    Anybody can use ngrok without an account, but there are limits on how long tunnels can
-    stay open and how much bandwidth they can process.
-    <a href="https://dashboard.ngrok.com/user/signup">Sign up for a free account</a> so your
-    tunnel don't time out and also get more bandwidth, http basic auth, tcp tunnels, custom subdomains and more.
-</p>
-<p>
-    The error encountered was: <strong style="color: #9E2929">ERR_NGROK_708</strong>
-</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	
 
-            
-        </div>
-    </body>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="core/shadowBox/shadowbox.css">
+<link rel="stylesheet" type="text/css" href="http://www.soitic.com/css/css_barra_soitic.css">
+<script type="text/javascript" src="core/shadowBox/shadowbox.js"></script>
+<script type="text/javascript">Shadowbox.init();</script>
+
+<!-- Barra Soitic -->
+<link rel="stylesheet" type="text/css" href="http://www.soitic.com/css/css_barra_soitic.css">
+</head>
+
+<body>  	
+	
+	<div class="topo" style="background-color:#FFF; padding:8px;">		
+		<center><iframe src="http://www.soitic.com/barraSoitic.asp" class="iframeBarra"></iframe></center>
+<div class="divFillerBarra"></div>
+<div class="topo">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="54%">
+				<a href="index.asp?Cod_Empresa=">
+					<img src="images/logo-indoor1.jpg" />
+				</a>				
+			</td>
+			
+			<td width="23%">			
+				<form action="busca.asp" method="post">
+					<input type="text" name="texto" />
+					<input type="submit" value="buscar" />
+				</form>				
+			</td>
+			
+			<td width="23%" align="right">								
+				<img src="images/logo-soitic.jpg" onclick="window.location = 'http://soitic.com/'" />
+				
+				<a href="http://www.youtube.com/watch?v=j1Pz8QI5GQk" target="_blank" >
+					<img src="images/barra_video.png" />
+				</a>				
+			</td>
+		</tr>
+	</table>
+
+	<div class="menu">
+	<a href="index.asp" class="amenu">Inicial</a> &nbsp; &nbsp;
+	
+				<a href="noticia.asp?Noticia=9" class="amenu">Palavra presidente</a> &nbsp; &nbsp;
+	
+		<a href="http://vip-medsystem.com.br" target="_blank" class="amenu">Espaço VIP</a>
+	
+			<a href="login.asp" class="amenu">Login</a>
+	
+</div>
+
+</div>
+
+<div class="meio">
+	<table width="100%" cellpadding="0" cellspacing="0">
+		<!-- LINHA TOPO -->
+		
+		<tr>		
+
+							
+					<td width="480" class="destaque">
+						<!--
+						<div style="width: 470px; height: 210px;">
+							<center>
+						-->
+								<a href="noticia.asp?Noticia=3421"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/tec sau.jpg" style="max-width:470px; max-height: 210px;" /></a>
+						<!--	
+							</center>
+						</div>
+						-->
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3421" class="am">Como a tecnologia atua na saúde</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3421" class="as">Básica e primária</a>
+						</span>
+						
+					</td>
+							
+					<td width="480" class="destaque">
+						<!--
+						<div style="width: 470px; height: 210px;">
+							<center>
+						-->
+								<a href="noticia.asp?Noticia=3342"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/bkp.png" style="max-width:470px; max-height: 210px;" /></a>
+						<!--	
+							</center>
+						</div>
+						-->
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3342" class="am">Cópia de Segurança – Backup</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3342" class="as">Confira o passo a passo</a>
+						</span>
+						
+					</td>
+						
+		
+		</tr>				
+		
+		<!-- LINHAS BAIXO -->
+		<tr>			
+			<td colspan="4">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>		
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+									<a href="categoria.asp?Categoria=98" class="at" style="">Comunicado Soitic:</a>
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=3245"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/capa_evento_metra.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3245" class="am tituloNoticia">Vem aí o 1º Workshop Metra Web e eSocial</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3245" class="as subtituloNoticia">NÃO PERCA TEMPO, VAGAS LIMITADAS!</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+										<br/><br/><br/>
+									
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=3250"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/atendimento.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3250" class="am tituloNoticia">Horário de Atendimento Grupo SOITIC</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3250" class="as subtituloNoticia">ATENÇÃO!!</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+										<br/><br/><br/>
+									
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=3219"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/capa_upgrade.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3219" class="am tituloNoticia">UPGRADE 2019 e BRINDE SOITIC</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3219" class="as subtituloNoticia">Acesse os seus Brindes!!</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+										<br/><br/><br/>
+									
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=3239"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/capa_area.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3239" class="am tituloNoticia">ATENÇÃO!</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3239" class="as subtituloNoticia">Os cursos das soluções foram atualizados!!</a>
+						</span>
+					</td>																						
+				</tr><tr>		
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+									<a href="categoria.asp?Categoria=4" class="at" style="">Notícias Gerais:</a>
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=3327"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/esocial.png" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3327" class="am tituloNoticia">eSocial Prorrogado!</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3327" class="as subtituloNoticia">Confira o Cronograma</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2869"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/Googleespiao.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2869" class="am tituloNoticia">Como não ser espionado pelo Google e pelo Facebook</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2869" class="as subtituloNoticia">3 passos simples</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2650"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/iogurte_sem_marca_materia.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2650" class="am tituloNoticia">Brasileiro abre mão de iogurte, creme de leite e outros itens</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2650" class="as subtituloNoticia">Aponta pesquisa realizada em 11,3 mil domicílios em todo o País</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2404"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/capa_ampliartleiloes.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2404" class="am tituloNoticia">[12/05] Leilão Especial de Maio a Lance Mínimo.</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2404" class="as subtituloNoticia">50 lotes a Lance Mínimo!</a>
+						</span>
+					</td>																						
+				</tr><tr>		
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+									<a href="categoria.asp?Categoria=30" class="at" style="">Saúde Profissional:</a>
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2925"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/Assinatura-D.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2925" class="am tituloNoticia">A equiparação dos contratos</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2925" class="as subtituloNoticia">Contratos digitais aos contratos físicos</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+										<br/><br/><br/>
+									
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2868"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/remedios.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2868" class="am tituloNoticia">Reajuste de medicamentos máximo será de 2,84% em 2018</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2868" class="as subtituloNoticia">O aumento deverá apresentar três faixas de reajuste</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+										<br/><br/><br/>
+									
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2770"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/ass_digital.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2770" class="am tituloNoticia">5 benefícios da assinatura eletrônica</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2770" class="as subtituloNoticia">Ganhar performance e reduzir custos</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+										<br/><br/><br/>
+									
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2763"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/educa_f.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2763" class="am tituloNoticia">Edução Financeira é a base do sucesso</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2763" class="as subtituloNoticia">Curso online</a>
+						</span>
+					</td>																						
+				</tr><tr>		
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+									<a href="categoria.asp?Categoria=36" class="at" style="">Saúde Espiritual:</a>
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2364"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/pensamento_maquina.png" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2364" class="am tituloNoticia">Transferir pensamentos para máquinas</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2364" class="as subtituloNoticia">Bilionário da tecnologia pode ajuda a melhorar capacidade cognitiva humana</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+										<br/><br/><br/>
+									
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=1039"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/espiritual.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=1039" class="am tituloNoticia">Como cuidar da sua saúde espiritual</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=1039" class="as subtituloNoticia">Para um tratamento dar resultado, é necessário acreditar: a fé faz a pessoa persistir e se movimentar ao encontro da cura.</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+										<br/><br/><br/>
+									
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=942"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/solidao.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=942" class="am tituloNoticia">COMO BLOQUEAR O CONTÁGIO DAS EMOÇÕES NEGATIVAS</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=942" class="as subtituloNoticia">A solidão também pode ser disseminada entre as pessoas. Acontece com mais frequência entre as mulheres e entre amigos. Saiba como bloquear o contágio das emoções negativas</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+										<br/><br/><br/>
+									
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=645"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/espelho02.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=645" class="am tituloNoticia">Conheça você mesmo</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=645" class="as subtituloNoticia">Um mandamento por dia para você reciclar seus pensamentos nesta próxima etapa do ano.</a>
+						</span>
+					</td>																						
+				</tr><tr>		
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+									<a href="categoria.asp?Categoria=37" class="at" style="">Saúde Mental:</a>
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2726"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/enxaqueca.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2726" class="am tituloNoticia">Vem aí o primeiro remédio específico para enxaqueca</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2726" class="as subtituloNoticia">O medicamento tão aguardado por quem sofre desse mal </a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=1775"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/8tec.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=1775" class="am tituloNoticia">2045: o ano em que os computadores assumirão o poder</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=1775" class="as subtituloNoticia">Bem-vindo à verdadeira Matrix.</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=1745"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/memorias.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=1745" class="am tituloNoticia">8 técnicas para memorizar qualquer coisa</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=1745" class="as subtituloNoticia">A sobrecarga de informações e tarefas da vida moderna pode sacrificar a memória</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=1746"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/Ansiedade_1.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=1746" class="am tituloNoticia">Cientistas descobrem como desligar a ansiedade</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=1746" class="as subtituloNoticia">O interruptor é uma proteína que controla a emissão de neurotransmissores</a>
+						</span>
+					</td>																						
+				</tr><tr>		
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+									<a href="categoria.asp?Categoria=38" class="at" style="">MEIO AMBIENTE:</a>
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=3306"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/MA.png" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3306" class="am tituloNoticia">Dia Mundial do Meio Ambiente </a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3306" class="as subtituloNoticia">Promove a Sustentabilidade</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=3291"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/plastico .png" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3291" class="am tituloNoticia">Depois dos canudos vem os plásticos </a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3291" class="as subtituloNoticia">SP quer proibir plásticos de uso único</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2465"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/meioamb.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2465" class="am tituloNoticia">Dia Mundial do Meio Ambiente</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2465" class="as subtituloNoticia">A preservação ambiental através do avanço tecnológico</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2419"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/passaros.png" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2419" class="am tituloNoticia">Reaproveite as embalagens em casa</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2419" class="as subtituloNoticia">9 formas de reutilizá-las</a>
+						</span>
+					</td>																						
+				</tr><tr>		
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+									<a href="categoria.asp?Categoria=39" class="at" style="">ECONOMIA :</a>
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2926"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/telefone-fixo.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2926" class="am tituloNoticia">O fim do telefone fixo está próximo?</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2926" class="as subtituloNoticia">Os brasileiros migraram para o celular.</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2553"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/esocial2.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2553" class="am tituloNoticia">eSocial - Cronograma </a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2553" class="as subtituloNoticia">Sistema Metra Web avança com as atualizações</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2508"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/capa_colmeia.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2508" class="am tituloNoticia">Saúde e tecnologia integrada</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2508" class="as subtituloNoticia">O futuro da gestão hospitalar</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2433"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/proteger.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2433" class="am tituloNoticia">Saiba como se proteger do ataque hacker</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2433" class="as subtituloNoticia">Mais de 70 mil máquinas em quase 80 países já foram vítimas do ataque</a>
+						</span>
+					</td>																						
+				</tr><tr>		
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+									<a href="categoria.asp?Categoria=40" class="at" style="">SAÚDE:</a>
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=3340"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/crf.png" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3340" class="am tituloNoticia">MEDSYSTEM S/V firma parceria</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3340" class="as subtituloNoticia">No segmento farmacêutico </a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=3290"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/shutterstock_1335030683.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=3290" class="am tituloNoticia">Design pode transformar o sistema de saúde</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=3290" class="as subtituloNoticia">Experiência acaba com salas de espera</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2937"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/dores.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2937" class="am tituloNoticia">Principais tipos de dor</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2937" class="as subtituloNoticia">Nociceptiva, neuropática e psicogênica</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2844"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/seg.hospitais.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2844" class="am tituloNoticia">Biometria de recém-nascidos será obrigatória</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2844" class="as subtituloNoticia">As imagens devem constar na Declaração de Nascidos Vivos (DNV)</a>
+						</span>
+					</td>																						
+				</tr><tr>		
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+									<a href="categoria.asp?Categoria=41" class="at" style="">CULTURA:</a>
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2593"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/capa_1209.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2593" class="am tituloNoticia">Nova exposição na Galeria Ampliart </a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2593" class="as subtituloNoticia">De 12 de setembro à 30 de novembro. </a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2039"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/face.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2039" class="am tituloNoticia">Links maliciosos no Facebook podem atacar contas</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2039" class="as subtituloNoticia">Para evitar cair nesse tipo de golpe, desconfie de downloads sugeridos</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2489"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/capa_leilao2017.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2489" class="am tituloNoticia">SEGUNDO LEILÃO DE JUNHO</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2489" class="as subtituloNoticia">Está aberta a Exposição Virtual para lances prévios</a>
+						</span>
+					</td>																						
+						
+					<!-- Linha 1 -->					
+					<td valign="top" class="areanoticias">
+						<span class="tipomateria">
+							
+						</span>
+						<br />
+						<br />
+						<a href="noticia.asp?Noticia=2485"><img src="http://www.indoorweb.com.br/sgc/imagens/FOTO_TEXTO/new/niver_amp.jpg" width="220" height="115" /></a>
+						<br />
+						
+						<span class="manchete">
+							<a href="noticia.asp?Noticia=2485" class="am tituloNoticia">A Galeria Ampliart está em festa!</a>
+						</span>
+						<br />
+						
+						<span class="submanchete">
+							<a href="noticia.asp?Noticia=2485" class="as subtituloNoticia">Vamos comemorar o aniversário da Galeria</a>
+						</span>
+					</td>																						
+				</tr>
+				</table>
+			</td>
+		</tr>
+	
+	</table>
+</div>
+	
+	</div>
+	
+	
+<div style="background-color:#CCC;">
+	<div class="final">
+
+		<table width="1000px" style="font-family: 'Open Sans', Arial, sans-serif; color:black;" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="23%" valign="top" style="padding-left:-200px;">
+					<p><a href="http://www.soitic.com/index.asp" target="_blank"><img src="http://indoorweb.com.br/sgc/imagens/FOTO_TEXTO/soitic-S.png" alt="" name="img_imagem" width="150px"  id="img_imagem" /></a></p>
+				</td>				
+				<td width="22%" valign="top">
+					<center>
+						<br/>
+						<a href="http://www.soitic.com/index.asp" target="_blank" class="ar" style="font-family: 'Open Sans', Arial, sans-serif; color:black;"><strong>Contato Comercial</strong> 0800 707 5900</a></br>
+						<a href="http://www.soitic.com/index.asp" target="_blank" class="ar" style="font-family: 'Open Sans', Arial, sans-serif; color:black;"><strong>Contato de Assistência</strong> 0800 704 1133</a></br>
+						<a href="http://www.soitic.com/index.asp" target="_blank" class="ar" style="font-family: 'Open Sans', Arial, sans-serif; color:black;"><strong>Fixo Geral</strong> 35 3729 9900</a></br>
+						<a href="http://www.soitic.com/index.asp" target="_blank" class="ar" style="font-family: 'Open Sans', Arial, sans-serif; color:black;">www.soitic.com</a>
+					</center>
+				</td>
+				
+				<td width="29%" align="center" valign="middle">
+					&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/soitic?fref=ts" target="_blank"><img src="images/facebook_32.png" width="32" height="32" /></a> &nbsp;&nbsp;&nbsp;
+					<!--<img src="images/twitter_32.png" width="32" height="32" />&nbsp;&nbsp;&nbsp;
+						<img src="images/youtube_32.png" width="32" height="32" />-->
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" align="center">
+					<span style="font-size:10px;">
+						Todos os direitos reservados - Indoor Web é uma marca sob os direitos do Grupo Soitic.
+					</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</body>
 </html>
+

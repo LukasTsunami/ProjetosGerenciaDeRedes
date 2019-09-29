@@ -13,7 +13,7 @@ void eraseAllPreviousSocketData(struct addrinfo *socket_addr);
 void estabilishDataToSend(int socket_identificator, struct VariablesDTO variables);
 void forkAndLoopListThoTryToConnect(struct addrinfo *list_of_addresses_infos, int *socket_identificator);
 char* formatAsIP(struct sockaddr_in *information_core);
-struct VariablesDTO mapArgumentsToVariables(char *arguments[]);
+struct VariablesDTO mapArgumentsToVariables(char *arguments[], int number_of_received_arguments);
 void sendData(struct VariablesDTO variables, int socket_identificator, char (*buffer)[BUFFSIZ]);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
 void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
@@ -141,13 +141,16 @@ char* formatAsIP(struct sockaddr_in *information_core){
   return inet_ntoa((struct in_addr) information_core->sin_addr);
 }
 
-struct VariablesDTO mapArgumentsToVariables(char *arguments[]){ 
+struct VariablesDTO mapArgumentsToVariables(char *arguments[], int number_of_received_arguments){ 
   char *current_executable = (char*) malloc(sizeof(char) * sizeof(arguments[0]));
   char *http_method = (char*) malloc(sizeof(char) * sizeof(arguments[1]));
   char *hostname = (char*) malloc(sizeof(char) * sizeof(arguments[2]));
   char *port = (char*) malloc(sizeof(char) * sizeof(arguments[3]));
   char *html_file_path_and_filename = (char*) malloc(sizeof(char) * sizeof(arguments[4]));
   char *destination_file_to_save_response_from_request = (char*) malloc(sizeof(char) * sizeof(arguments[5]));
+  if(number_of_received_arguments==7){
+    char *body_params = (char*) malloc(sizeof(char) * sizeof(arguments[5]));    
+  }
   
   current_executable = copyDynamicString(current_executable, arguments[0]);
   http_method = copyDynamicString(http_method, arguments[1]);
@@ -215,7 +218,7 @@ void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr){
 void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were_passed){
   // 6 params => { 0 = argc, 1 = http_method, 2 = hostname, 3 = port, 4 = source_path, 5 = destination_path }
   const int expected_parameters = 6;
-  if(how_many_parameters_were_passed!=expected_parameters){
+  if(how_many_parameters_were_passed<expected_parameters){
         printf("\n------------------------------------------------------\n");
         printf("\n\tWrong number of parameters passed\n");
         printf("\n\tPlease provide this order of parameters:\n");
@@ -226,6 +229,8 @@ void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were
         printf("\n\t|\t3 - port\t\t|");
         printf("\n\t|\t4 - source_path\t\t|");
         printf("\n\t|\t5 - destination_path\t|");
+        printf("\n\n|--------OPTIONAL--------|\n");
+        printf("\n\t|\t6 - Body Params/Querystring\t|");
         printf("\n\n------------------------------------------------------\n");
         exit(ERROR);
     }
