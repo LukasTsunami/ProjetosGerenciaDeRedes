@@ -2,17 +2,20 @@
 #include "./global_variables.h"
 #include "./structures.h"
  
-char* allocateMemoryForRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
+char* allocateMemoryForRequestMessage(struct VariablesDTO VariablesDTO, char *data_to_send, int number_of_received_arguments);
 int calculateNewBufferSize();
+int checkIfThereAreBodyParams(int number_of_received_arguments);
 void cleanBufferOfDestinationFile(char (*buffer)[BUFFSIZ]);
 void closeConnection(int socket_identificator);
 void configureSocket(struct addrinfo *address_info_configuration_model);
 char* copyDynamicString(char* output_str, char* input_str);
-char* createRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host);
+char* createRequestMessage(struct VariablesDTO variables, char *data_to_send, int number_of_received_arguments);
 void eraseAllPreviousSocketData(struct addrinfo *socket_addr);
-void estabilishDataToSend(int socket_identificator, struct VariablesDTO variables);
+void estabilishDataToSend(int socket_identificator, struct VariablesDTO variables, int number_of_received_arguments);
 void forkAndLoopListThoTryToConnect(struct addrinfo *list_of_addresses_infos, int *socket_identificator);
 char* formatAsIP(struct sockaddr_in *information_core);
+int getSizeOfBodyParams(char *arguments[], int number_of_received_arguments);
+int getSizeOfBodyParamsByVariable(struct VariablesDTO variables, int number_of_received_arguments);
 struct VariablesDTO mapArgumentsToVariables(char *arguments[], int number_of_received_arguments);
 void sendData(struct VariablesDTO variables, int socket_identificator, char (*buffer)[BUFFSIZ]);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
@@ -20,12 +23,19 @@ void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
 void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were_passed);
 int getAListOfAllAddressessInfos(struct VariablesDTO variables, struct addrinfo * address_info_configuration_model, struct addrinfo ** list_of_addresses_infos);
 
-char* allocateMemoryForRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){
-    return malloc(sizeof(char) * ((strlen(html_file_path_and_filename_on_host)) + strlen(hostname) + strlen(http_method) + strlen("  HTTP/1.1\r\nHost: \r\nr\n")));
+char* allocateMemoryForRequestMessage(struct VariablesDTO variables, char *data_to_send, int number_of_received_arguments){
+    int size_of_body_params = getSizeOfBodyParamsByVariable(variables, number_of_received_arguments);
+    return malloc(sizeof(char) * ((strlen(variables.html_file_path_and_filename)) + strlen(variables.port) + size_of_body_params + strlen(variables.hostname) + strlen(variables.http_method) + strlen("  HTTP/1.1\r\nHost: \r\nr\n")));
 }
 
 int calculateNewBufferSize(){
     return BUFFSIZ - 1;
+}
+
+int checkIfThereAreBodyParams(int number_of_received_arguments){
+  // Always is one more than the number of parameters you passed
+  // 'Cause the first one is the executable
+  return number_of_received_arguments == 7;
 }
 
 void cleanBufferOfDestinationFile(char (*buffer)[BUFFSIZ]){
@@ -59,16 +69,16 @@ char* copyDynamicString(char* output_str, char* input_str){
     return output_str;
 }
 
-char* createRequestMessage(char* http_method, char *data_to_send, char* hostname, char *html_file_path_and_filename_on_host){ 
-    data_to_send = allocateMemoryForRequestMessage(http_method, data_to_send, hostname, html_file_path_and_filename_on_host);
+char* createRequestMessage(struct VariablesDTO variables, char *data_to_send, int number_of_received_arguments){ 
+    data_to_send = allocateMemoryForRequestMessage(variables, data_to_send, number_of_received_arguments);
     
-    if ( (strcmp(http_method, "POST")==0) || (strcmp(http_method, "PUT")==0) ) {
-        strcpy(data_to_send, http_method);
+    if ( (strcmp(variables.http_method, "POST")==0) || (strcmp(variables.http_method, "PUT")==0) ) {
+        strcpy(data_to_send, variables.http_method);
         strcat(data_to_send, " ");
-        strcat(data_to_send, html_file_path_and_filename_on_host);
+        strcat(data_to_send, variables.html_file_path_and_filename);
         strcat(data_to_send, " HTTP/1.1\r\n");
         strcat(data_to_send, "Host: ");
-        strcat(data_to_send, hostname);
+        strcat(data_to_send, variables.hostname);
         strcat(data_to_send, "\r\n");
         strcat(data_to_send, "Content-Type: application/octet-stream\r\n");
         //strcat(data_to_send, "Content-type: application/x-www-form-urlencoded\r\n");
@@ -77,13 +87,13 @@ char* createRequestMessage(char* http_method, char *data_to_send, char* hostname
         strcat(data_to_send, "\r\n\n"); 
         strcat(data_to_send, "email=lucas@tsunami&nome=lucas\r\n");
     
-    }else if ( (strcmp(http_method, "GET")==0) || (strcmp(http_method, "HEAD")==0) ){
-        strcpy(data_to_send, http_method);
+    } else if ( (strcmp(variables.http_method, "GET")==0) || (strcmp(variables.http_method, "HEAD")==0) ){
+        strcpy(data_to_send, variables.http_method);
         strcat(data_to_send, " ");
-        strcat(data_to_send, html_file_path_and_filename_on_host);
+        strcat(data_to_send, variables.html_file_path_and_filename);
         strcat(data_to_send, " HTTP/1.1\r\n");
         strcat(data_to_send, "Host: ");
-        strcat(data_to_send, hostname);
+        strcat(data_to_send, variables.hostname);
         strcat(data_to_send, "\r\n\r\n"); 
     }
     
@@ -96,8 +106,8 @@ void eraseAllPreviousSocketData(struct addrinfo *socket_addr){
     memset(socket_addr, which_byte_to_set_data, sizeof(struct addrinfo));
 }
 
-void estabilishDataToSend(int socket_identificator, struct VariablesDTO variables){
-    char *data_to_send = createRequestMessage(variables.http_method, data_to_send, variables.hostname, variables.html_file_path_and_filename);
+void estabilishDataToSend(int socket_identificator, struct VariablesDTO variables, int number_of_received_arguments){
+    char *data_to_send = createRequestMessage(variables, data_to_send, number_of_received_arguments);
     
     //write on socket communication buffer
     write(socket_identificator, data_to_send, strlen(data_to_send));
@@ -141,6 +151,16 @@ char* formatAsIP(struct sockaddr_in *information_core){
   return inet_ntoa((struct in_addr) information_core->sin_addr);
 }
 
+int getSizeOfBodyParams(char *arguments[], int number_of_received_arguments){
+  const int MININUM_BODY_PARAMS_LENGTH = 5;
+  return checkIfThereAreBodyParams(number_of_received_arguments) ? sizeof(arguments[6]) : MININUM_BODY_PARAMS_LENGTH;
+}
+
+int getSizeOfBodyParamsByVariable(struct VariablesDTO variables, int number_of_received_arguments){
+  const int MININUM_BODY_PARAMS_LENGTH = 5;
+  return checkIfThereAreBodyParams(number_of_received_arguments) ? sizeof(variables.body_params) : MININUM_BODY_PARAMS_LENGTH;
+}
+
 struct VariablesDTO mapArgumentsToVariables(char *arguments[], int number_of_received_arguments){ 
   char *current_executable = (char*) malloc(sizeof(char) * sizeof(arguments[0]));
   char *http_method = (char*) malloc(sizeof(char) * sizeof(arguments[1]));
@@ -148,16 +168,16 @@ struct VariablesDTO mapArgumentsToVariables(char *arguments[], int number_of_rec
   char *port = (char*) malloc(sizeof(char) * sizeof(arguments[3]));
   char *html_file_path_and_filename = (char*) malloc(sizeof(char) * sizeof(arguments[4]));
   char *destination_file_to_save_response_from_request = (char*) malloc(sizeof(char) * sizeof(arguments[5]));
-  if(number_of_received_arguments==7){
-    char *body_params = (char*) malloc(sizeof(char) * sizeof(arguments[5]));    
-  }
-  
+
+  const int size_of_body_params = getSizeOfBodyParams(arguments, number_of_received_arguments);
+  char *body_params = (char*) malloc(sizeof(char) * size_of_body_params);    
   current_executable = copyDynamicString(current_executable, arguments[0]);
   http_method = copyDynamicString(http_method, arguments[1]);
   hostname = copyDynamicString(hostname, arguments[2]);
   port = copyDynamicString(port, arguments[3]);
   html_file_path_and_filename = copyDynamicString(html_file_path_and_filename, arguments[4]);
   destination_file_to_save_response_from_request = copyDynamicString(destination_file_to_save_response_from_request, arguments[5]);
+  body_params = checkIfThereAreBodyParams(number_of_received_arguments) ? copyDynamicString(body_params, arguments[6]) : "";
 
   struct VariablesDTO dto = { 
     current_executable,
@@ -165,7 +185,8 @@ struct VariablesDTO mapArgumentsToVariables(char *arguments[], int number_of_rec
     hostname,
     port,
     html_file_path_and_filename,
-    destination_file_to_save_response_from_request
+    destination_file_to_save_response_from_request,
+    body_params
   };
 
   return dto;
