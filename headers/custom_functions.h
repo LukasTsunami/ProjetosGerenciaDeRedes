@@ -85,7 +85,9 @@ char* createRequestMessage(struct VariablesDTO variables, char *data_to_send, in
         //strcat(data_to_send, "\r\nContent-Encoding: binary");
         strcat(data_to_send, "Content-Length: 32\r\n");
         strcat(data_to_send, "\r\n\n"); 
-        strcat(data_to_send, "email=lucas@tsunami&nome=lucas\r\n");
+        strcat(data_to_send, variables.body_params);
+        strcat(data_to_send, "\r\n"); 
+        //strcat(data_to_send, "email=lucas@tsunami&nome=lucas\r\n");
     
     } else if ( (strcmp(variables.http_method, "GET")==0) || (strcmp(variables.http_method, "HEAD")==0) ){
         strcpy(data_to_send, variables.http_method);
