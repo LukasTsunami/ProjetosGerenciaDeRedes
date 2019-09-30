@@ -14,39 +14,16 @@ void eraseAllPreviousSocketData(struct addrinfo *socket_addr);
 void estabilishDataToSend(int socket_identificator, struct VariablesDTO variables, int number_of_received_arguments);
 void forkAndLoopListThoTryToConnect(struct addrinfo *list_of_addresses_infos, int *socket_identificator);
 char* formatAsIP(struct sockaddr_in *information_core);
+char* getContentLengthString(struct VariablesDTO variables, char *content_length_string);
 int getSizeOfBodyParams(char *arguments[], int number_of_received_arguments);
 int getSizeOfBodyParamsByVariable(struct VariablesDTO variables, int number_of_received_arguments);
 struct VariablesDTO mapArgumentsToVariables(char *arguments[], int number_of_received_arguments);
 void sendData(struct VariablesDTO variables, int socket_identificator, char (*buffer)[BUFFSIZ]);
 void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[]);
 void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
+char* strcatInteger(int value, char* result, int base);
 void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were_passed);
 int getAListOfAllAddressessInfos(struct VariablesDTO variables, struct addrinfo * address_info_configuration_model, struct addrinfo ** list_of_addresses_infos);
-
-	char* itoa(int value, char* result, int base) {
-		// check that the base if valid
-		if (base < 2 || base > 36) { *result = '\0'; return result; }
-
-		char* ptr = result, *ptr1 = result, tmp_char;
-		int tmp_value;
-
-		do {
-			tmp_value = value;
-			value /= base;
-			*ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz" [35 + (tmp_value - value * base)];
-		} while ( value );
-
-		// Apply negative sign
-		if (tmp_value < 0) *ptr++ = '-';
-		*ptr-- = '\0';
-		while(ptr1 < ptr) {
-			tmp_char = *ptr;
-			*ptr--= *ptr1;
-			*ptr1++ = tmp_char;
-		}
-		return result;
-	}
-	
 
 char* allocateMemoryForRequestMessage(struct VariablesDTO variables, char *data_to_send, int number_of_received_arguments){
     int size_of_body_params = getSizeOfBodyParamsByVariable(variables, number_of_received_arguments);
@@ -92,11 +69,6 @@ char* copyDynamicString(char* output_str, char* input_str){
     }
     strcpy(output_str, input_str);
     return output_str;
-}
-
-char* getContentLengthString(struct VariablesDTO variables, char *content_length_string){
-    content_length_string = itoa(strlen(variables.body_params) + 2, content_length_string, 10);
-    return content_length_string;
 }
 
 char* createRequestMessage(struct VariablesDTO variables, char *data_to_send, int number_of_received_arguments){ 
@@ -184,6 +156,11 @@ char* formatAsIP(struct sockaddr_in *information_core){
   return inet_ntoa((struct in_addr) information_core->sin_addr);
 }
 
+char* getContentLengthString(struct VariablesDTO variables, char *content_length_string){
+    content_length_string = strcatInteger(strlen(variables.body_params) + 2, content_length_string, 10);
+    return content_length_string;
+}
+
 int getSizeOfBodyParams(char *arguments[], int number_of_received_arguments){
   const int MININUM_BODY_PARAMS_LENGTH = 5;
   return checkIfThereAreBodyParams(number_of_received_arguments) ? sizeof(arguments[6]) : MININUM_BODY_PARAMS_LENGTH;
@@ -268,6 +245,30 @@ void setIfFamilyAddressIsIpv4OrIpv6(struct addrinfo *socket_addr, char protocol[
 void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr){
     socket_addr->ai_socktype = SOCK_STREAM;
 } 
+
+char* strcatInteger(int value, char* result, int base) {
+	// check that the base if valid
+	if (base < 2 || base > 36) { *result = '\0'; return result; }
+
+	char* ptr = result, *ptr1 = result, tmp_char;
+	int tmp_value;
+
+	do {
+		tmp_value = value;
+		value /= base;
+		*ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz" [35 + (tmp_value - value * base)];
+	} while ( value );
+
+	// Apply negative sign
+	if (tmp_value < 0) *ptr++ = '-';
+	*ptr-- = '\0';
+	while(ptr1 < ptr) {
+		tmp_char = *ptr;
+		*ptr--= *ptr1;
+		*ptr1++ = tmp_char;
+	}
+	return result;
+}
 
 void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were_passed){
   // 6 params => { 0 = argc, 1 = http_method, 2 = hostname, 3 = port, 4 = source_path, 5 = destination_path }
