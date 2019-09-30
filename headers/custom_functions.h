@@ -23,6 +23,31 @@ void setThatCallerHandlesOnlyTCP(struct addrinfo *socket_addr);
 void validatesIfTheQuantityOfArgumentsPassedIsValid(int how_many_parameters_were_passed);
 int getAListOfAllAddressessInfos(struct VariablesDTO variables, struct addrinfo * address_info_configuration_model, struct addrinfo ** list_of_addresses_infos);
 
+	char* itoa(int value, char* result, int base) {
+		// check that the base if valid
+		if (base < 2 || base > 36) { *result = '\0'; return result; }
+
+		char* ptr = result, *ptr1 = result, tmp_char;
+		int tmp_value;
+
+		do {
+			tmp_value = value;
+			value /= base;
+			*ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz" [35 + (tmp_value - value * base)];
+		} while ( value );
+
+		// Apply negative sign
+		if (tmp_value < 0) *ptr++ = '-';
+		*ptr-- = '\0';
+		while(ptr1 < ptr) {
+			tmp_char = *ptr;
+			*ptr--= *ptr1;
+			*ptr1++ = tmp_char;
+		}
+		return result;
+	}
+	
+
 char* allocateMemoryForRequestMessage(struct VariablesDTO variables, char *data_to_send, int number_of_received_arguments){
     int size_of_body_params = getSizeOfBodyParamsByVariable(variables, number_of_received_arguments);
     return malloc(sizeof(char) * ((strlen(variables.html_file_path_and_filename)) + strlen(variables.port) + size_of_body_params + strlen(variables.hostname) + strlen(variables.http_method) + strlen("  HTTP/1.1\r\nHost: \r\nr\n")));
@@ -69,6 +94,11 @@ char* copyDynamicString(char* output_str, char* input_str){
     return output_str;
 }
 
+char* getContentLengthString(struct VariablesDTO variables, char *content_length_string){
+    content_length_string = itoa(strlen(variables.body_params) + 2, content_length_string, 10);
+    return content_length_string;
+}
+
 char* createRequestMessage(struct VariablesDTO variables, char *data_to_send, int number_of_received_arguments){ 
     data_to_send = allocateMemoryForRequestMessage(variables, data_to_send, number_of_received_arguments);
     
@@ -81,11 +111,15 @@ char* createRequestMessage(struct VariablesDTO variables, char *data_to_send, in
         strcat(data_to_send, variables.hostname);
         strcat(data_to_send, "\r\n");
         strcat(data_to_send, "Content-Type: application/octet-stream\r\n");
-        //strcat(data_to_send, "Content-type: application/x-www-form-urlencoded\r\n");
-        //strcat(data_to_send, "\r\nContent-Encoding: binary");
-        strcat(data_to_send, "Content-Length: 32\r\n");
+        strcat(data_to_send, "Content-Length: ");
+        char* content_length_string = malloc(sizeof(char) * (strlen(variables.body_params)) - 10);
+        content_length_string = getContentLengthString(variables, content_length_string);
+        
+        strcat(data_to_send, (char *) content_length_string);
+        strcat(data_to_send, "\r\n");
         strcat(data_to_send, "\r\n\n"); 
-        strcat(data_to_send, "email=lucas@tsunami&nome=lucas\r\n");
+        strcat(data_to_send, variables.body_params);
+        strcat(data_to_send, "\r\n"); 
     
     } else if ( (strcmp(variables.http_method, "GET")==0) || (strcmp(variables.http_method, "HEAD")==0) ){
         strcpy(data_to_send, variables.http_method);
@@ -96,7 +130,6 @@ char* createRequestMessage(struct VariablesDTO variables, char *data_to_send, in
         strcat(data_to_send, variables.hostname);
         strcat(data_to_send, "\r\n\r\n"); 
     }
-    
     printf("%s",data_to_send);
     return data_to_send;
 }

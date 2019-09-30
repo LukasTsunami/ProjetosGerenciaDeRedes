@@ -1,5 +1,7 @@
 # This project make Http 1.1 requests (without TLS) using raw C language
+
 ## HTTP METHODS IMPLEMENTED:
+
 - GET
 - HEAD
 - POST
@@ -26,22 +28,27 @@
 ---
 
 ### Second:
+
 - chmod +x run.sh
 - ./run.sh
 
 ---
 
 ## With Docker:
+
 - docker-compose up --build
 - docker-compose run --rm httprequests /bin/bash
 - After that, run one of those **scripts** before
 
+- docker-compose run --rm httprequests /bin/bash ./run.sh POST 95f61387.ngrok.io 80 / output/response_from_executed_request.txt "nome=lucas@tsunami&girl=julia"
+
 ## How to test server?:
+
 - enter into server folder
 - run node index.js
 - download ngrok to expose localhost
   - ./ngrok http 8081
-- After this, change ./run.sh  with the ngrok URL
+- After this, change ./run.sh with the ngrok URL
 
 ## Where will be stored my http responses?
 
