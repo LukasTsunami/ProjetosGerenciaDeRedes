@@ -42,6 +42,8 @@
 
 - docker-compose run --rm httprequests /bin/bash ./run.sh POST 95f61387.ngrok.io 80 / output/response_from_executed_request.txt "nome=lucas@tsunami&girl=julia"
 
+- docker-compose run --rm httprequests /bin/bash ./run.sh PUT 847e22f8.ngrok.io 80 / output/response_from_executed_request.txt "nome=lucas&email=lucas@tsunami1234567891012"
+
 ## How to test server?:
 
 - enter into server folder
