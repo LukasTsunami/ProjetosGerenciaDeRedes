@@ -14,6 +14,7 @@
 //Internal Includes
 #include "external_libs.h"
 #include "global_functions.h"
+#include "functions_prototypes.h"
 #include "constants.h"
 #include "structures.h"
 
