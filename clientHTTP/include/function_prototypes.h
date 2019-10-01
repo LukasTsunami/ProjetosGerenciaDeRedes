@@ -1,3 +1,5 @@
+#define included_functions_prototypes 1
+
 char* allocateMemoryForRequestMessage(struct VariablesDTO VariablesDTO, char *data_to_send, int number_of_received_arguments);
 int calculateNewBufferSize();
 int checkIfThereAreBodyParams(int number_of_received_arguments);

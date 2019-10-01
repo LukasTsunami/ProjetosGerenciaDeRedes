@@ -1,3 +1,5 @@
+#define included_structures 1
+
 struct VariablesDTO {
   char *current_executable;
   char *http_method;

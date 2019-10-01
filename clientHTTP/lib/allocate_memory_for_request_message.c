@@ -1,11 +1,11 @@
 #include <strings.h>
 #include <stdlib.h>
 
-#ifndef VariablesDTO
+#ifndef included_structures
    #include "structures.h"
 #endif /*VariablesDTO*/
 
-#ifndef getSizeOfBodyParamsByVariable
+#ifndef included_functions_prototypes
    #include "function_prototypes.h"
 #endif /*getSizeOfBodyParamsByVariable*/
 
