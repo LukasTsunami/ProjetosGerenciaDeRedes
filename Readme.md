@@ -23,7 +23,7 @@
 
 #### Example2:
 
-- ./exe POST 10.132.20.22 80 /aulas/gr/readme.txt output/response_from_executed_request.txt
+- ./exe POST 10.132.20.22 80 /aulas/gr/readme.txt output/response_from_executed_request.txt "BODY_ARGUMENT=Test"
 
 ---
 
@@ -32,6 +32,14 @@
 - chmod +x run.sh
 - ./run.sh
 
+## How to test server?:
+
+- enter into server folder
+- run node index.js
+- download ngrok to expose localhost
+  - ./ngrok http 8081
+- After this, change hostname on terminal argument or in ./run.sh with the ngrok URL
+
 ---
 
 ## With Docker:
@@ -39,19 +47,13 @@
 - docker-compose up --build
 - docker-compose run --rm httprequests /bin/bash
 - After that, run one of those **scripts** before
-
-- docker-compose run --rm httprequests /bin/bash ./run.sh POST 95f61387.ngrok.io 80 / output/response_from_executed_request.txt "nome=lucas@tsunami&girl=julia"
-
-- docker-compose run --rm httprequests /bin/bash ./run.sh PUT 847e22f8.ngrok.io 80 / output/response_from_executed_request.txt "nome=lucas&email=lucas@tsunami1234567891012"
-
-## How to test server?:
-
-- enter into server folder
-- run node index.js
+- docker-compose up --build node
 - download ngrok to expose localhost
   - ./ngrok http 8081
-- After this, change ./run.sh with the ngrok URL
+- docker-compose run --rm httprequests /bin/bash ./run.sh PUT 847e22f8.ngrok.io 80 / output/response_from_executed_request.txt "nome=lucas&email=lucas@tsunami1234567891012"
+- docker-compose run --rm httprequests /bin/bash ./run.sh POST 95f61387.ngrok.io 80 / output/response_from_executed_request.txt "nome=lucas@tsunami&girl=julia"
 
-## Where will be stored my http responses?
+---
 
+# Where will be stored my http responses?
 - output/response_from_executed_request.txt file
