@@ -1,5 +1,21 @@
-#include "./headers/libs.h"
-#include "./headers/custom_functions.h"
+//External Includes
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <netinet/tcp.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <regex.h>
+//Internal Includes
+#include "external_libs.h"
+#include "global_functions.h"
+#include "constants.h"
+#include "structures.h"
 
 int main(int number_of_received_arguments, char *arguments[])
 {
@@ -11,6 +27,7 @@ int main(int number_of_received_arguments, char *arguments[])
     validatesIfTheQuantityOfArgumentsPassedIsValid(number_of_received_arguments);
     
     struct VariablesDTO variables = mapArgumentsToVariables(arguments, number_of_received_arguments);
+    
     //Before Connect
     configureSocket(&address_info_configuration_model);
     getAListOfAllAddressessInfos(variables, &address_info_configuration_model, &list_of_addresses_infos);
