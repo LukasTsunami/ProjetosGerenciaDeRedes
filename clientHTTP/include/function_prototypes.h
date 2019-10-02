@@ -4,7 +4,7 @@ char* allocateMemoryForRequestMessage(struct VariablesDTO VariablesDTO, char *da
 int calculateNewBufferSize();
 int checkIfThereAreBodyParams(int number_of_received_arguments);
 void cleanBufferOfDestinationFile(char (*buffer)[BUFFSIZ]);
-void closeConnection(int socket_identificator);
+void closeConnectionWithSocket(int socket_identificator);
 void configureSocket(struct addrinfo *address_info_configuration_model);
 char* copyDynamicString(char* output_str, char* input_str);
 char* createRequestMessage(struct VariablesDTO variables, char *data_to_send, int number_of_received_arguments);

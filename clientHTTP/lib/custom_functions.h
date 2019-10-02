@@ -1,18 +1,4 @@
-int calculateNewBufferSize(){
-    return BUFFSIZ - 1;
-}
-
-int checkIfThereAreBodyParams(int number_of_received_arguments){
-  // Always is one more than the number of parameters you passed
-  // 'Cause the first one is the executable
-  return number_of_received_arguments == 7;
-}
-
-void cleanBufferOfDestinationFile(char (*buffer)[BUFFSIZ]){
-    bzero(buffer, BUFFSIZ);
-}
-
-void closeConnection(int socket_identificator){
+void closeConnectionWithSocket(int socket_identificator){
     shutdown(socket_identificator, SHUT_RDWR);
     close(socket_identificator);
 }
@@ -26,17 +12,6 @@ void configureSocket(struct addrinfo *address_info_configuration_model){
 	setThatCallerHandlesOnlyTCP(address_info_configuration_model);
     address_info_configuration_model->ai_flags = NO_EXTRA_BEHAVIORS;
     address_info_configuration_model->ai_protocol = ACCEPT_ANY_PROTOCOL;
-}
-
-char* copyDynamicString(char* output_str, char* input_str){
-    output_str = malloc(sizeof(char) * strlen(input_str));
-    if (output_str == NULL) {
-        printf("Not enough memory to copy dynamic string");
-        const int generic_error_code = 1;
-        exit(generic_error_code);
-    }
-    strcpy(output_str, input_str);
-    return output_str;
 }
 
 char* createRequestMessage(struct VariablesDTO variables, char *data_to_send, int number_of_received_arguments){ 

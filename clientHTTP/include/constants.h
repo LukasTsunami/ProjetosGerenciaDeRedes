@@ -1,3 +1,5 @@
+#define included_constants 1
+
 #define BUFFSIZ 1024
 #define FILE_PERMISSIONS 0755
 #define ERROR -1
