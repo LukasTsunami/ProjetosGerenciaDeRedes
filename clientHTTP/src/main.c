@@ -1,4 +1,5 @@
 //External Includes
+#define included_external_libs 1
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -38,7 +39,7 @@ int main(int number_of_received_arguments, char *arguments[])
     //After Connect
     estabilishDataToSend(socket_identificator, variables, number_of_received_arguments);
     sendData(variables, socket_identificator, &buffer);
-    closeConnectionWithSocket(socket_identificator);
+    closeConnection(socket_identificator);
     
 	return(PROGRAM_SUCCESSFULL_EXECUTED_CODE);
 }

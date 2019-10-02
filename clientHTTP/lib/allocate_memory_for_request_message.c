@@ -1,5 +1,7 @@
-#include <strings.h>
-#include <stdlib.h>
+#ifndef included_external_libs
+    #include <strings.h>
+    #include <stdlib.h>
+#endif
 
 #ifndef included_structures
    #include "structures.h"

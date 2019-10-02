@@ -1,4 +1,6 @@
-#include <strings.h>
+#ifndef included_external_libs
+    #include <strings.h>
+#endif
 
 #ifndef included_constants
     #include <constants.h>
